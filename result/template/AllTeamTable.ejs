@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet "type="text/css" href="./css/AllTeamTable.css">
+    </head>
+
+    <body>  
+        <div id="table-outerDiv">
+            <div id="table-div">
+                <table>
+                    <thead>
+                        <tr id="th-tr">
+                            <th class="number-th">team</th>
+                            <th class="number-th">mode</th>
+                            <th class="chart-th">pieces</th>
+                            <th class="chart-th">move</th>
+                            <th class="chart-th">engage</th>
+                            <th class="number-th">point</th>
+                            <th class="number-th">link</th>
+                            <th class="number-th">penalty</th>
+                            <th class="chart-th">result</th>
+                            <th class="chart-th">strategy</th>
+                            <th class="number-th">avg / tol rp</th>
+                            <th class="number-th">stability</th>
+                        </tr>
+                    </thead>
+                    
+        
+                    <tbody>
+                        <% data.forEach( (document, index) => { %>
+                            <% const times = document.times %>
+            
+                            <% const getRate = (num) => { %>
+                                <% if (num == 0) { %>
+                                    <% return 0; %>
+                                <% } %>
+            
+                                <% return Math.round( ( (num * 100) + Number.EPSILON) * 100 ) / 100; %>
+                            <% }; %>
+            
+                            <% const getAverage = (num) => { %>
+                                <% if (num == 0) { %>
+                                    <% return 0; %>
+                                <% } %>
+            
+                                <% return Math.round( (num + Number.EPSILON) * 100 ) / 100; %>
+                            <% }; %>
+            
+                            <% let cargoTotalA = document.topA + document.middleA + document.bottomA; %>
+            
+                            <% if(cargoTotalA == 0) { %>
+                                <% cargoTotalA = 1; %>
+                            <% } %>
+            
+                            <% let cargoTotalT = document.topT + document.middleT + document.bottomT; %>
+            
+                            <% if(cargoTotalT == 0) { %>
+                                <% cargoTotalT = 1; %>
+                            <% } %>
+            
+                            <tr>
+                                <div>
+                                    
+                                </div>
+                                <td rowspan="2"><a href="./<%=document.teamNumber%>" target="_blank" ><%= document.teamNumber %></a></td>
+                                <td>A</td>
+                                
+                                <td>
+                                    <div class="chart chart-left"
+                                        style=
+                                            "background: linear-gradient(to right, var(--chartColor1) <%= getRate(document.topA / cargoTotalA) %>%, var(--chartColor2) <%= getRate(document.topA / cargoTotalA) %>%, var(--chartColor2) <%= getRate((document.topA + document.middleA) / cargoTotalA) %>%, var(--chartColor3) <%= getRate((document.topA + document.middleA) / cargoTotalA) %>% <% if(document.topA + document.middleA + document.bottomA === 0) { %>, var(--chartColorNone) 0% <% } %>);"
+                                        hover-content=
+                                            "top <%= getRate(document.topA / cargoTotalA) %>% mid <%= getRate(document.middleA / cargoTotalA) %>% btm <%= getRate(document.bottomA / cargoTotalA) %>%"
+                                    >    
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="chart chart-left"
+                                        style=
+                                            "background: linear-gradient(to right, var(--chartColor2) <%= getRate(document.mobilityA / times) %>%, var(--chartColorNone) <%= getRate(document.mobilityA / times) %>%);"
+                                        hover-content=
+                                            "mobility <%= getRate(document.mobilityA / times) %>% none <%= getRate( ( times - document.mobilityA ) / times) %>%"
+                                    >    
+                                    </div>
+                                </td>
+
+                                <td>
+                                    
+                                    <div class="chart chart-left"
+                                        style=
+                                            "background: linear-gradient(to right, var(--chartColor1) <%= getRate( (document.dockA - document.engageA) / times) %>%, var(--chartColor3) <%= getRate( (document.dockA - document.engageA) / times) %>%, var(--chartColor3) <%= getRate( document.engageA / times) %>%, var(--chartColorNone) <%= getRate( document.engageA / times) %>%);"
+                                            hover-content=
+                                            "dock <%= getRate( (document.dockA - document.engageA) / times) %>% engage <%= getRate( document.engageA / times) %>% none <%= getRate( (times - document.dockA) / times) %>%"
+                                    >    
+                                    </div>
+                                </td>
+                                <td><%= getAverage(document.pointA / times) %></td>
+                                <td rowspan="2"><%= getAverage(document.link / times) %></td>
+                                <td rowspan="2"><%= getAverage(document.penalty / times) %></td>
+                                <td rowspan="2">
+                                    <div class="chart chart-right" 
+                                    style=
+                                        "background: linear-gradient(to right, var(--chartColor1) <%= getRate(document.win / times) %>%, var(--chartColor2) <%= getRate(document.win / times) %>%, var(--chartColor2) <%= getRate((document.win + document.lose) / times) %>%, var(--chartColor3) <%= getRate((document.win + document.lose) / times) %>%);"
+                                    hover-content=
+                                        "win <%= getRate(document.win / times) %>% lose <%= getRate(document.lose / times) %>% tie <%= getRate(document.tie / times) %>%"
+                                    >    
+                                    </div>
+                                </td>
+                                <td rowspan="2">
+                                    <div class="chart chart-right" 
+                                        style=
+                                            "background: linear-gradient(to right, var(--chartColor1) <%= getRate(document.offensive / times) %>%, var(--chartColor2) <%= getRate(document.offensive / times) %>%, var(--chartColor2) <%= getRate((document.offensive + document.defensive) / times) %>%, var(--chartColor3) <%= getRate((document.offensive + document.defensive) / times) %>%,var(--chartColor3) <%= getRate((document.offensive + document.defensive + document.mix) / times) %>%, var(--chartColorNone) <%= getRate((document.offensive + document.defensive + document.mix) / times) %>%);"
+                                        hover-content=
+                                            "offensive <%= getRate(document.offensive / times) %>% defensive <%= getRate(document.defensive / times) %>% mix <%= getRate(document.mix / times) %>% none <%= getRate( (times - (document.offensive + document.defensive + document.mix)) / times) %>%"
+                                    >    
+                                    </div>
+                                </td>
+                                <td rowspan="2"><% if(gameType !== '2') { %>n / a<% } else { %> <%= getAverage(document.rp / times) %>/<%= document.rp %><% } %></td>
+                                <td rowspan="2">
+                                    <div id="bottom-div">
+                                        <% const stability = getRate(times / ( document.absence + times) ) %>
+                                        <span style="
+                                            color: <% if(stability >= 80) { %> var(--ratingColor1) <% } else if(stability >= 50) { %> var(--ratingColor2) <% } else { %> var(--ratingColor3) <% } %>;
+                                        ">
+                                            <%= stability %>
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="bottom-tr">
+                                <td>T</td>
+                                <td>
+                                    <div class="chart chart-left"
+                                        style=
+                                            "background: linear-gradient(to right, var(--chartColor1) <%= getRate(document.topT / cargoTotalT) %>%, var(--chartColor2) <%= getRate(document.topT / cargoTotalT) %>%, var(--chartColor2) <%= getRate((document.topT + document.middleT) / cargoTotalT) %>%, var(--chartColor3) <%= getRate((document.topT + document.middleT) / cargoTotalT) %>% <% if(document.topT + document.middleT + document.bottomT === 0) { %>, var(--chartColorNone) 0% <% } %>);"
+                                        hover-content=
+                                            "top <%= getRate(document.topT / cargoTotalT) %>% mid <%= getRate(document.middleT / cargoTotalT) %>% btm <%= getRate(document.bottomT / cargoTotalT) %>%"
+                                    >    
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="chart chart-left" 
+                                        style=
+                                            "background: linear-gradient(to right, var(--chartColor1) <%= getRate(document.dockT / times) %>%, var(--chartColor2) <%= getRate(document.dockT / times) %>%, var(--chartColor2) <%= getRate((document.dockT + document.parkT) / times) %>%, var(--chartColorNone) <%= getRate((document.dockT + document.parkT) / times) %>%);"
+                                        hover-content=
+                                            "dock <%= getRate(document.dockT / times) %>% park <%= getRate(document.parkT / times) %>% none <%= getRate( ( times - (document.dockT + document.parkT) ) / times) %>%"
+                                    >  
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <% if(document.dockT === 0) { %>
+                                        n/a
+                                    <% } else { %>
+                                        <div class="chart chart-left" 
+                                            style=
+                                                "background: linear-gradient(to right, var(--chartColor1) <%= getRate(document.engageT / document.dockT) %>%, var(--chartColorNone) <%= getRate(document.engageT / document.dockT) %>%);"
+                                            hover-content=
+                                                "engage <%= getRate(document.engageT / document.dockT) %>% none <%= getRate( (document.dockT - document.engageT) / document.dockT) %>%"
+                                        >    
+                                        </div>
+                                    <% } %>
+                                </td>
+                                <td><%= getAverage(document.pointT / times) %></td>
+                            </tr>
+                
+                                
+                        <% }) %>
+                        <tr>
+                            <td colspan="12">-- no more data --</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script src="./js/allllTeamTable.js" type="text/javascript"></script>
+    </body>
+</html>

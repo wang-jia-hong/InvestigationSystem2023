@@ -1,0 +1,19 @@
+#s-dialog-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#s-dialog-btn {
+    width: 50%;
+    height: 20%;
+    border: 0;
+    border-radius: 5vmin;
+    margin: auto auto;
+    background-color: #000000;
+    color: #ffe0e0;
+    font-size: calc(var(--font-size) * 2);
+    letter-spacing: var(--font-size);
+    font-family: 'Alegreya Sans SC', serif;
+    animation: rotate 2s linear infinite;
+}

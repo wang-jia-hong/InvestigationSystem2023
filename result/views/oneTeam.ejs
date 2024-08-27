@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./css/root.css">
+        <link rel="stylesheet" type="text/css" href="./css/page.css">
+        <title><%= analyzeData.teamNumber %> <% if(gameType === '1') { %>Practice<% } else if(gameType === '2') { %>Qualification<% } else if(gameType === '3') { %>Playoff<% } %> - 7636 ScoutingSystem</title>
+    </head>
+    <body>
+        <main>
+            <%- include('../template/oneTeamAnalyzeTable') %>
+            <%- include('../template/oneTeamRecordTable') %>
+        </main>
+
+        <%- include('../template/footer') %>
+    </body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            @font-face {
+                font-family: JasonHandwriting;
+                src: url('./JasonHandwriting1.woff');
+            }
+
+            #game-table-div {
+                width: 90%;
+                height: fit-content;
+                max-height: 90%;
+                position: relative;
+                top: 80%;
+                left: 5%;
+                box-shadow: #b6b6b6 0 0 20px;
+                /* margin-bottom: 50%; */
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
+
+            #game-table {
+                width: 100%;
+                height: fit-content;
+                border-collapse: collapse;
+                font-size: var(--pageFontSize);
+                /* overflow: hidden; */
+            }
+
+            #game-thead {
+                background-color: #000000;
+                position: sticky;
+                top: 0;
+                left: 0;
+                z-index: 20;
+                box-shadow: #737373 0 0 5vh;
+            }
+
+            .game-th {
+                width: 8%;
+                min-width: 7.2vw;
+                height: 4vh;
+                color: #c5c5c5;
+                font-size: var(--pageFontSize);
+                padding: 0;
+            }
+
+            #comment-th {
+                width: 20%;
+                min-width: 18vw;
+            }
+
+            .game-td {
+                color: var(--fontColor);
+                width: fit-content;
+                height: 8vh;
+                font-size: calc(var(--pageFontSize) * 1.2 );
+                text-align: center;
+                position: relative;
+                padding: 0;
+            }
+
+            .comment-td {
+                font-family: 'Shantell Sans', 'JasonHandwriting', serif;
+            }
+
+            .comment-td-withAfter::after {
+                background-color: #00000068;
+                width: fit-content;
+                max-width: 60vw;
+                height: fit-content;
+                max-height: 50vh;
+                overflow: auto;
+                padding: 1% 3%;
+                border-radius: 1vmin;
+                content: attr(hover-content);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: fixed;
+                bottom: 8%;
+                left: 2%;
+                font-size: calc(var(--pageFontSize) * 1.2);
+                letter-spacing: calc(var(--pageFontSize) * 0.5);
+                animation: showComment 0.2s linear forwards;
+                z-index: 200;
+                backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(5px);
+            }
+
+            @keyframes showComment {
+                from {
+                    color: #00000000;
+                    transform: translatex(-100%);
+                } to {
+                    color: #ffffffff;
+                    transform: translatex(0%);
+                }
+            }
+            
+            .bottom-tr::after {
+                content: "";
+                box-shadow: inset #cccccc 0 -5vh 5vh;
+                position: relative;
+                right: 100%;
+                bottom: 0;
+                width: 90vw;
+                height: 8vh;
+                box-sizing: border-box;
+                display: block;
+                z-index: -1;
+            }
+
+            #space-div {
+                width: 90%;
+                height: 5%;
+                position: relative;
+                top: 80%;
+                left: 5%;
+            }
+
+            @media only screen and (max-width: 1100px) {
+                #game-table-div { top: 90%; }
+                .game-td { height: 15vh; }
+                .bottom-tr::after { height: 15vh; }
+                #space-div { top: 90%; }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="game-table-div">
+            <table id="game-table">
+                <thead id="game-thead">
+                    <tr id="game-th-tr">
+                        <th class="game-th">session</th>
+                        <th class="game-th">mode</th>
+                        <th class="game-th">pieces</th>
+                        <th class="game-th">move</th>
+                        <th class="game-th">point</th>
+                        <th class="game-th">link</th>
+                        <th class="game-th">penalty</th>
+                        <th class="game-th">result</th>
+                        <th class="game-th">rp</th>
+                        <th class="game-th">strategy</th>
+                        <th class="game-th" id="comment-th">comment</th>
+                    </tr>
+                </thead>
+            
+                <tbody>
+                    <% gameData.forEach( document => {  %>
+                        <tr>
+                            <td rowspan="2" class="game-td"><%= document.gameNumber %></td>
+                            <td class="game-td">auto</td>
+                            <td class="game-td"><%= document.cargoA.length %></td>
+                            <td class="game-td">
+                                <% if(document.moveA === 1) { %>
+                                    dock
+                                <% } else if(document.moveA === 2) { %>
+                                    mobility
+                                <% }  else if(document.moveA === 3) { %>
+                                    engage
+                                <% }  else if(document.moveA === 4) { %>
+                                    dock + mobility
+                                <% }  else if(document.moveA === 5) { %>
+                                    engage + mobility
+                                <% } else { %>
+                                    none
+                                <% } %>
+                            </td>
+                            <td class="game-td">
+                                <% let pointA = 0; %>
+                                <% document.cargoA.forEach( place => { %>
+                                    <% if( place < 20) { %>
+                                        <% pointA += 6; %>
+                                    <% } else if( place < 30 ) { %>
+                                        <% pointA += 4; %>
+                                    <% } else { %>
+                                        <% pointA += 3; %>
+                                    <% } %> 
+                                <% }) %>
+                
+                                <% if(document.moveA === 1) { %>
+                                    <% pointA += 8; %>
+                                <% } else if(document.moveA === 2) { %>
+                                    <% pointA += 3; %>
+                                <% } else if(document.moveA === 3) { %>
+                                    <% pointA += 12; %>
+                                <% } %> 
+                
+                                <%= pointA %>
+                            </td>
+                            <td rowspan="2" class="game-td"><%= document.link %></td>
+                            <td rowspan="2" class="game-td"><%= document.penalty %></td>
+                            <td rowspan="2" class="game-td">
+                                <% if( document.result === 1 ) { %>
+                                    win
+                                <% } else if( document.result === 2 ) { %>
+                                    lose
+                                <% } else if( document.result === 3 ) { %>
+                                    tie
+                                <% } %>
+                            </td>
+                            <td rowspan="2" class="game-td"><%= document.rp %></td>
+                            <td rowspan="2" class="game-td">
+                                <% if( document.character === 1 ) { %>
+                                    offensive
+                                <% } else if( document.character === 2 ) { %>
+                                    deffensive
+                                <% } else if( document.character === 3 ) { %>
+                                    mix
+                                <% } else if( document.character === 0 ) { %>
+                                    none
+                                <% } %>
+                            </td>
+                            <td rowspan="2" class="game-td comment-td" hover-content="<%= document.comment %>">
+                                <%= document.comment.slice(0, 10) %>
+                            </td>
+                        </tr>
+                        <tr class="bottom-tr">
+                            <td class="game-td">tele</td>
+                            <td class="game-td"><%= document.cargoT.length %></td>
+                            <td class="game-td">
+                                <% if(document.moveT === 1) { %>
+                                    dock
+                                <% } else if(document.moveT === 2) { %>
+                                    park
+                                <% }  else if(document.moveT === 3) { %>
+                                    engage
+                                <% } else { %>
+                                    none
+                                <% } %>
+                            </td>
+                            <td class="game-td">
+                                <% let pointT = 0; %>
+                                <% document.cargoT.forEach( place => { %>
+                                    <% if( place < 20) { %>
+                                        <% pointT += 5; %>
+                                    <% } else if( place < 30 ) { %>
+                                        <% pointT += 3; %>
+                                    <% } else { %>
+                                        <% pointT += 2; %>
+                                    <% } %> 
+                                <% }) %>
+                
+                                <% if(document.moveT === 1) { %>
+                                    <% pointT += 6; %>
+                                <% } else if(document.moveT === 2) { %>
+                                    <% pointT += 2; %>
+                                <% } else if(document.moveT === 3) { %>
+                                    <% pointT += 10; %>
+                                <% } %> 
+                
+                                <%= pointT %>
+                            </td>
+                        </tr> 
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="space-div"></div>
+
+        <script src="./js/oneTeamRecordTable.js" type="text/javascript"></script>
+    </body>
+</html>

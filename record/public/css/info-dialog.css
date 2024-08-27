@@ -1,0 +1,313 @@
+/*'d' stands for dialog*/
+
+
+#i-d-form-div {
+    background-color: #000000;
+    position: relative;
+    float: left;
+    top: 5%;
+    left: 5%;
+    width: 55%;
+    height: 90%;
+    box-shadow: #ffdfdf73 var(--box-shadow-offset) var(--box-shadow-offset) var(--box-shadow-size);
+    border-radius: 7vmin;
+    text-align: center;
+}
+
+.i-d-form-btn-div {
+    width: 100%;
+    height: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.i-d-form-btn {
+    width: 50%;
+    height: 60%;
+    border: 0;
+    padding: 3% 7%;
+    border-radius: 7vmin;
+    background-color: #000000;
+    color: #4c4c4c;
+    box-shadow: #4c4c4c 0px 0px var(--box-shadow-size), inset #4c4c4c 0px 0px var(--box-shadow-size);
+    font-size: var(--font-size);
+    font-family: 'Alegreya Sans SC', serif;
+    letter-spacing: calc(var(--font-size) * 0.2);
+    white-space:nowrap;
+    
+}
+
+.i-d-form-btn-p {
+    width: fit-content;
+    height: fit-content;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: inline;
+    letter-spacing: inherit;
+}
+
+#i-d-keyboard-div {
+    background-color: black;
+    position: relative;
+    float: left;
+    top: 5%;
+    left: 10%;
+    width: 30%;
+    height: 70%;
+    box-shadow: #ffdfdf73 var(--box-shadow-offset) var(--box-shadow-offset) var(--box-shadow-size);
+    border-radius: 7vmin;
+    justify-content: center;
+    overflow: scroll;
+}
+
+
+.keyboard-div {
+    height: 25%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.keyboard-btn-div {
+    height: 100%;
+    width: 33%;
+    padding: 0;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.keyboard-btn {
+    width: 70%;
+    aspect-ratio: 1 / 1;
+    border: 0;
+    border-radius: 50%;
+    margin: auto auto;
+    background-color: #000000;
+    color: #4c4c4c;
+    box-shadow: #4c4c4c 0px 0px var(--box-shadow-size), inset #4c4c4c 0px 0px var(--box-shadow-size);
+    font-size: var(--font-size);
+    font-family: 'Alegreya Sans SC', serif;
+}
+
+.keyboard-btn-clicked {
+    color: #ffe0e0;
+    box-shadow: #ffe0e0 0px 0px var(--box-shadow-size), inset #ffe0e0 0px 0px var(--box-shadow-size);
+}
+
+#delete-btn {
+    display: flex;
+    text-align: center;
+    font-size: var(--font-size);
+}
+
+#delete-icon {
+    margin: auto;
+}
+
+#i-done-div {
+    position: relative;
+    float: left;
+    top: 10%;
+    left: 10%;
+    width: 30%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7vmin;
+}
+
+.i-done-btn-div {
+    height: 100%;
+    width: 75%;
+    padding: 0;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.i-done-btn-div-changed {
+    width: 35%;
+}
+
+
+.i-done-btn {
+    width: 30%;
+    aspect-ratio: 1 / 1;
+    border: 0;
+    border-radius: 50%;
+    background-color: #000000;
+    color: #ffe0e0;
+    font-size: var(--font-size);
+    animation: rotate 2s linear infinite;
+}
+
+.i-done-btn-changed {
+    width: 60%;
+}
+
+.i-absence-div {
+    height: 100%;
+    width: 25%;
+    padding: 0;
+    float: left;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.i-absence-div-changed {
+    width: 20%;
+    justify-content: center;
+}
+
+.absence-btn {
+    width: 45%;
+    aspect-ratio: 1 / 1;
+    border: 0;
+    border-radius: 50%;
+    background-color: #000000;
+    color: #4c4c4c;
+    box-shadow: #4c4c4c 0px 0px calc(var(--box-shadow-size) * 0.3), inset #4c4c4c 0px 0px calc(var(--box-shadow-size) * 0.3);
+    font-size: calc( var(--font-size) * 0.5 );
+}
+
+.absence-btn-changed {
+    width: 55%;
+}
+
+.i-full-screen-div {
+    height: 100%;
+    width: 35%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.i-full-screen-div-changed {
+    display: flex;
+}
+
+#i-full-screen-btn {
+    width: 60%;
+    aspect-ratio: 1 / 1;
+    border: 0;
+    border-radius: 50%;
+    background-color: #000000;
+    color: #ffe0e0;
+    font-size: var(--font-size);
+    animation: rotate 2s linear infinite;
+}
+
+#absence-dialog-content-div {
+    width: 80%;
+    height: 70%;
+    position: relative;
+    top: 15%;
+    left: 10%;
+    border-radius: 5vmin;
+    box-shadow: #ffdfdf73 var(--box-shadow-offset) var(--box-shadow-offset) var(--box-shadow-size);
+}
+
+#absence-warning-div {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    color: #ffe0e0;
+    font-size: var(--font-size);
+    letter-spacing: calc(var(--font-size) * 0.1);
+    font-family: 'Alegreya Sans SC', serif;
+}
+
+#absence-confirm-div {
+    width: 60%;
+    height: 20%;
+    position: relative;
+    top: 20%;
+    left: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.absence-confirm-btn-div {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.absence-confirm-btn {
+    width: 30%;
+    aspect-ratio: 1 / 1;
+    border: 0;
+    border-radius: 3vmin;
+    background-color: #000000;
+    box-shadow: #ffe0e0 0px 0px calc(var(--box-shadow-size) * 0.3), inset #ffe0e0 0px 0px calc(var(--box-shadow-size) * 0.3);
+    color: #ffe0e0;
+    font-size: var(--font-size);
+    letter-spacing: calc(var(--font-size) * 0.1);
+    font-family: 'Alegreya Sans SC', serif;
+    transition: 0.8s;
+}
+
+.absence-submit-btn-noAnimation {
+    animation: none;
+    box-shadow: #ffe0e0 0px 0px var(--box-shadow-size), inset #ffe0e0 0px 0px var(--box-shadow-size);
+}
+
+.absence-submit-btn-clicked {
+    width: 20%;
+    aspect-ratio: 1 / 1;
+    box-shadow: #ffe0e0 0px 0px 0px, inset #ffe0e0 0px 0px 0px;
+    border: 0.5vmin solid transparent;
+    border-top: 0.5vmin solid #ffe0e0;
+    border-radius: 50%;
+    animation: loading 1s 0.2s linear infinite;
+    transition: 0.8s;
+}
+
+.absence-cancel-btn-hide {
+    box-shadow: transparent 0 0 var(--box-shadow-size), inset transparent 0px 0px var(--box-shadow-size);
+    color: transparent;
+    transition: 0.5s;
+}
+
+@keyframes bump {
+    from {
+        width: 60%;
+        letter-spacing: calc(var(--font-size) * 0.2);
+    }
+    to {
+        width: 70%;
+        letter-spacing: calc(var(--font-size) * 0.3);
+    }
+}
+
+@keyframes back {
+    from {
+        width: 70%;
+        letter-spacing: calc(var(--font-size) * 0.3);
+    }
+    to {
+        width: 60%;
+        letter-spacing: calc(var(--font-size) * 0.2);
+    }
+}
+
+
+@media only screen and (orientation: portrait) {
+    #i-d-form-div { width: 90%; height: 40%; top: 3%; left: 5%; }
+    #i-d-keyboard-div { width: 90%; height: 40%; top: 7%; left: 5%; }
+    .keyboard-btn { width: 45%; }
+    #i-done-div { width: 60%; height: 20%; top: 12%; left: 20%; padding-bottom: 15%;}
+    #i-dialog-div { overflow-y: auto; }
+}

@@ -1,0 +1,134 @@
+a {
+    color: var(--fontColor);
+}
+
+#table-outerDiv {
+    width: 100%;
+    height: 100%;
+    /* position: relative;
+    left: 4%; */
+    /* background-color: var(--logoPink); */
+    border-radius: 2vmin;
+    /* box-shadow: var(--boxShadowBlue) 0 0 25px, inset var(--boxShadowBlue) 0 0 25px; */
+
+}
+
+#table-div {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+table {
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+    border-collapse: collapse;
+    border: 0;
+    /* box-sizing: border-box; */
+}
+
+thead {
+    position: sticky;
+    top: 0%;
+    left: 0;
+    height: 5vh;
+    background-color: #000000;
+    z-index: 100;
+    box-shadow: #737373 0 0 5vh;
+}
+
+th {
+    color: #c5c5c5;
+    /* border-bottom: var(--logoBlue) solid 5px; */
+    font-size: var(--pageFontSize);
+    /* padding-bottom: 1%; */
+    padding: 0.5% 0;
+}
+
+.number-th {
+    width: 5%;
+    min-width: 5vw;
+}
+
+.chart-th {
+    width: 13%;
+    min-width: 13vw;
+}
+
+tbody {
+    
+}
+
+td {
+    /* background-color: #000000; */
+    color: var(--fontColor);
+    width: fit-content;
+    height: 10vh;
+    font-size: calc(var(--pageFontSize) * 1.2 );
+    padding: 0;
+    position: relative;
+    z-index: 10;
+}
+
+tr {
+    
+}
+
+.bottom-tr::after {
+    content: "";
+    box-shadow: inset #cccccc 0 -5vh 5vh;
+    position: relative;
+    right: 100%;
+    bottom: 0;
+    width: 100vw;
+    height: 10vh;
+    box-sizing: border-box;
+    display: block;
+    z-index: 5;
+}
+
+/* #bottom-div {
+    box-shadow: inset #cccccc 0 -5vh 5vh;
+    width: 100%;
+    height: 100%;
+} */
+
+.chart {
+    width: 80%;
+    height: 1vh;
+    position: relative;
+    left: 10%;
+    cursor: pointer;
+}
+
+.chart-withBefore::before {
+    width: fit-content;
+    padding: 2% 12%;
+    content: attr(hover-content);
+    white-space:nowrap;
+    position: absolute;
+    top: 200%;
+    background-color: #b7b7b7;
+    border-radius: 3vmin;
+    font-size: var(--pageFontSize);
+    letter-spacing: 2px;
+    color: #000000;
+    cursor: pointer;
+}
+
+.chart-left::before {
+    left: 0%;
+}
+
+.chart-right::before {
+    right: -70%;
+}
+
+@media only screen and (max-width: 1100px) {
+    td { height: 15vh; }
+    .bottom-tr::after { height: 15vh; }
+    .number-th { width: 7%; min-width: 7vw; }
+    .chart-th { width: 10.2%; min-width: 10.2vw; }
+}

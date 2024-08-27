@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>觀賽系統</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./css/index.css">
+        <link rel="stylesheet" type="text/css" href="./css/start-dialog.css">
+        <link rel="stylesheet" type="text/css" href="./css/info-dialog.css">
+        <link rel="stylesheet" type="text/css" href="./css/count-dialog.css">
+        <link rel="stylesheet" type="text/css" href="./css/result-dialog.css">
+    </head>
+    <body id="body">
+            <dialog open id="s-dialog">
+                <div id="s-dialog-div" class="dialog-inner-div">
+                    <button id="s-dialog-btn" onclick="start()">start</button>
+                </div>
+            </dialog>
+
+
+            <!-- 'i' stands for info
+            'd' stands for dialog -->
+            <dialog id="i-dialog">
+                <div id="i-dialog-div" class="dialog-div">
+                    <div class="dialog-inner-div">
+                        <div id="i-d-form-div">
+                            <div class="i-d-form-btn-div">
+                                <button class="i-d-form-btn" id="i-d-form-btn1" onclick="infoChoseForm(1)">
+                                    Team Number
+                                    <p class="i-d-form-btn-p" id="i-d-form-btn-p1"></p>
+                                </button>
+                            </div>
+                            <div class="i-d-form-btn-div">
+                                <button class="i-d-form-btn" id="i-d-form-btn2" onclick="infoChoseForm(2)">
+                                    Game Type
+                                    <p class="i-d-form-btn-p" id="i-d-form-btn-p2"></p>
+                                </button>
+                            </div>
+                            <div class="i-d-form-btn-div">
+                                <button class="i-d-form-btn" id="i-d-form-btn3" onclick="infoChoseForm(3)">
+                                    Game Number
+                                    <p class="i-d-form-btn-p" id="i-d-form-btn-p3"></p>
+                                </button>
+                            </div>
+                        </div>
+                
+                        <div id="i-d-keyboard-div">
+    
+                            <div class="keyboard-div">
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn keyboard-num-btn" id="i-keyboard-btn1" mode="i" keyboard="1">1</button> </div>
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn keyboard-num-btn" id="i-keyboard-btn2" mode="i" keyboard="2">2</button> </div>
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn keyboard-num-btn" id="i-keyboard-btn3" mode="i" keyboard="3">3</button> </div>
+                            </div>
+    
+                            <div class="keyboard-div">
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn keyboard-num-btn" id="i-keyboard-btn4" mode="i" keyboard="4">4</button> </div>
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn keyboard-num-btn" id="i-keyboard-btn5" mode="i" keyboard="5">5</button> </div>
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn keyboard-num-btn" id="i-keyboard-btn6" mode="i" keyboard="6">6</button> </div>
+                            </div>
+    
+                            <div class="keyboard-div">
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn keyboard-num-btn" id="i-keyboard-btn7" mode="i" keyboard="7">7</button> </div>
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn keyboard-num-btn" id="i-keyboard-btn8" mode="i" keyboard="8">8</button> </div>
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn keyboard-num-btn" id="i-keyboard-btn9" mode="i" keyboard="9">9</button> </div>
+                            </div>
+    
+                            <div class="keyboard-div">
+                                <div class="keyboard-btn-div"></div>
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn keyboard-num-btn" id="i-keyboard-btn0" mode="i" keyboard="0">0</button> </div>
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn keyboard-del-btn" id="i-delete-btn" mode="i"><i class="fa-solid  fa-delete-left ft-lg" id="delete-icon"></i></button> </div>
+                            </div>
+                            
+                        </div>
+    
+                        <div id="i-done-div">
+                            <div id="i-absence-div" class="i-absence-div">
+                                <button id="absence-btn" class="absence-btn" onclick="absence()"><i class="fa-solid fa-skull ft-lg"></i></button>
+                            </div>
+                            <div id="i-done-btn-div" class="i-done-btn-div">
+                                <button id="i-done-btn" class="i-done-btn" onclick="infoDone()"><i class="fa-solid fa-forward-step ft-lg"></i></button>
+                            </div>
+                            <div id="i-full-screen-div" class="i-full-screen-div">
+                                <button id="i-full-screen-btn" onclick="enterFullScreen('i')"><i class="fa-solid fa-expand ft-lg"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </dialog>
+
+            <dialog id="absence-dialog">
+                <div class="dialog-div">
+                    <div class="dialog-inner-div">
+                        <div id="absence-dialog-content-div">
+                            <div id="absence-warning-div">
+                                <p id="absence-warning">Something went wrong with the team's robot?</p>
+                            </div>
+                            <div id="absence-confirm-div">
+                                <div class="absence-confirm-btn-div">
+                                    <button class="absence-confirm-btn" id="absence-submit-btn" onclick="absenceSubmit()">Y</button>
+                                </div>
+                                <div class="absence-confirm-btn-div">
+                                    <button class="absence-confirm-btn" id="absence-cancel-btn" onclick="absenceCancel()">N</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </dialog> 
+
+            <!--'a' stands for auto-->
+            <dialog id="a-dialog" class="count-dialog">
+                <div id="a-dialog-div" class="count-dialog-div dialog-div">
+
+                    <div class="dialog-inner-div">
+                        <div id="a-cargo-div" class="cargo-div">
+                            <div class="cargo-divider-div">
+                                <div class="cargo-divider" id="cargo-divider1"></div>
+                                <div class="cargo-divider" id="cargo-divider2"></div>
+                            </div>
+                            <div id="a-cargo-row1-div" class="cargo-row-div"></div>
+                            <div id="a-cargo-row2-div" class="cargo-row-div"></div>
+                            <div id="a-cargo-row3-div" class="cargo-row-div"></div>
+                        </div>
+    
+                        <div class="move-div">
+                            <button type="button" id="a-charge-btn" class="move-btn" value="0" onclick="mBtnClicked('a-charge-btn')">
+                                <i class="fa-solid fa-charging-station ft-lg"></i>
+                            </button>
+    
+                            <button type="button" id="a-community-btn" class="move-btn" value="0" onclick="mBtnClicked('a-community-btn')">
+                                <i class="fa-solid fa-arrow-right-from-bracket ft-lg"></i>
+                            </button>
+    
+                            <button type="button" id="a-balance-btn" class="move-btn" value="0" onclick="mBtnClicked('a-balance-btn')">
+                                <i class="fa-solid fa-scale-balanced ft-lg"></i>
+                            </button>                
+                        </div>
+    
+                        <div class="done-div" >
+                            <button type="button" id="a-done-btn" class="done-btn" value="0" onclick="autoDone()">
+                                <i class="fa-solid fa-robot ft-lg"></i>
+                                <i class="fa-solid fa-chevron-right ft-lg"></i>
+                                <i class="fa-solid fa-gamepad"></i>
+                            </button>
+                        </div>
+    
+                        <div id="a-full-screen-div" class="full-screen-div">
+                            <button class="full-screen-btn" onclick="enterFullScreen('a')"><i class="fa-solid fa-expand ft-lg"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </dialog>
+
+            <!--'t' stands for teleop-->
+            <dialog id="t-dialog" class="count-dialog">
+                <div id="t-dialog-div" class="count-dialog-div dialog-div">
+                    <div class="dialog-inner-div">
+                        <div id="t-cargo-div" class="cargo-div">
+                            <div class="cargo-divider-div">
+                                <div class="cargo-divider" id="cargo-divider1"></div>
+                                <div class="cargo-divider" id="cargo-divider2"></div>
+                            </div>
+                            <div id="t-cargo-row1-div" class="cargo-row-div"></div>
+                            <div id="t-cargo-row2-div" class="cargo-row-div"></div>
+                            <div id="t-cargo-row3-div" class="cargo-row-div"></div>
+                        </div>
+    
+                        <div class="move-div">
+                            <button type="button" id="t-charge-btn" class="move-btn" value="0" onclick="mBtnClicked('t-charge-btn')">
+                                <i class="fa-solid fa-charging-station ft-lg"></i>
+                            </button>
+    
+                            <button type="button" id="t-park-btn" class="move-btn" value="0" onclick="mBtnClicked('t-park-btn')">
+                                <i class="fa-solid fa-square-parking ft-lg"></i>
+                            </button>
+    
+                            <button type="button" id="t-balance-btn" class="move-btn" value="0" onclick="mBtnClicked('t-balance-btn')">
+                                <i class="fa-solid fa-scale-balanced ft-lg"></i>
+                            </button>                
+                        </div>
+    
+                        <div class="done-div" >
+                            <button class="t-done-btn" value="0" onclick="backToAuto()">
+                                <i class="fa-solid fa-backward-step ft-lg"></i>
+                            </button>
+
+                            <button class="t-done-btn" value="0" onclick="teleDone()">
+                                <i class="fa-solid fa-forward-step ft-lg"></i>
+                            </button>
+                        </div>
+    
+                        <div id="t-full-screen-div" class="full-screen-div">
+                            <button class="full-screen-btn" onclick="enterFullScreen('t')"><i class="fa-solid fa-expand ft-lg"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </dialog>
+
+
+
+
+
+            <!--'r' stands for result-->
+            <dialog id="r1-dialog" >
+                <div id="r1-dialog-div" class="dialog-div">
+                    <div class="dialog-inner-div">
+                        <div id="r1-gameResult-div" class="r1-btn-div">
+                            <button id="r1-win-btn" class="r1-btn" onclick="gameResultBtnClicked('win')">win</button>
+                            <button id="r1-lose-btn" class="r1-btn" onclick="gameResultBtnClicked('lose')">lose</button>
+                            <button id="r1-tie-btn" class="r1-btn" onclick="gameResultBtnClicked('tie')">tie</button>
+                        </div>
+        
+                        <div id="r1-character-div" class="r1-btn-div">
+                            <button id="r1-offensive-btn" class="r1-btn" onclick="characterBtnClicked('offensive')">offensive</button>
+                            <button id="r1-defensive-btn" class="r1-btn" onclick="characterBtnClicked('defensive')">defensive</button>
+                            <button id="r1-mix-btn" class="r1-btn" onclick="characterBtnClicked('mix')">mix</button>
+                        </div>
+        
+                        <div id="r1-done-div">
+                            <div class="r1-done-btn-div">
+                                <button class="r1-done-btn" value="0" onclick="backToTele()">
+                                    <i class="fa-solid fa-backward-step ft-lg"></i>
+                                </button>
+                            </div>
+                            <div class="r1-done-btn-div">
+                                <button class="r1-done-btn" onclick="r1Done()">
+                                    <i class="fa-solid fa-forward-step ft-lg"></i>
+                                </button>
+                            </div>
+                            <div id="r1-full-screen-div">
+                                <button class="r1-done-btn" id="r1-full-screen-btn" onclick="enterFullScreen('r1')"><i class="fa-solid fa-expand ft-lg"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </dialog>
+
+            <dialog id="r2-dialog">
+                <div id="r2-dialog-div" class="dialog-div">
+                    <div class="dialog-inner-div">
+                        <div id="r2-d-form-div">
+                            <div class="r2-d-form-btn-div">
+                                <button class="r2-d-form-btn" id="r2-d-form-btn1" onclick="r2ChoseForm(1)">
+                                    Link
+                                    <p class="r2-d-form-btn-p" id="r2-d-form-btn-p1"></p>
+                                </button>
+                            </div>
+                            <div class="r2-d-form-btn-div">
+                                <button class="r2-d-form-btn" id="r2-d-form-btn2" onclick="r2ChoseForm(2)">
+                                    Penalty
+                                    <p class="r2-d-form-btn-p" id="r2-d-form-btn-p2"></p>
+                                </button>
+                            </div>
+                            <div class="r2-d-form-btn-div">
+                                <button class="r2-d-form-btn" id="r2-d-form-btn3" onclick="r2ChoseForm(3)">
+                                    RP
+                                    <p class="r2-d-form-btn-p" id="r2-d-form-btn-p3"></p>
+                                </button>
+                            </div>
+                            <div class="r2-d-form-btn-div">
+                                <button class="r2-d-form-btn" id="r2-d-form-btn4" onclick="r2ChoseForm(4)">
+                                    Alliance
+                                    <p class="r2-d-form-btn-p" id="r2-d-form-btn-p4"></p>
+                                </button>
+                            </div>
+                        </div>
+                
+                        <div id="r2-d-keyboard-div">
+    
+                            <div class="keyboard-div">
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn  keyboard-num-btn" id="r2-keyboard-btn1" mode="r2" keyboard="1">1</button> </div>
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn  keyboard-num-btn" id="r2-keyboard-btn2" mode="r2" keyboard="2">2</button> </div>
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn  keyboard-num-btn" id="r2-keyboard-btn3" mode="r2" keyboard="3">3</button> </div>
+                            </div>
+    
+                            <div class="keyboard-div">
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn keyboard-num-btn" id="r2-keyboard-btn4" mode="r2" keyboard="4">4</button> </div>
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn keyboard-num-btn" id="r2-keyboard-btn5" mode="r2" keyboard="5">5</button> </div>
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn keyboard-num-btn" id="r2-keyboard-btn6" mode="r2" keyboard="6">6</button> </div>
+                            </div>
+    
+                            <div class="keyboard-div">
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn keyboard-num-btn" id="r2-keyboard-btn7" mode="r2" keyboard="7">7</button> </div>
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn keyboard-num-btn" id="r2-keyboard-btn8" mode="r2" keyboard="8">8</button> </div>
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn keyboard-num-btn" id="r2-keyboard-btn9" mode="r2" keyboard="9">9</button> </div>
+                            </div>
+    
+                            <div class="keyboard-div">
+                                <div class="keyboard-btn-div"></div>
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn keyboard-num-btn" id="r2-keyboard-btn0" mode="r2" keyboard="0">0</button> </div>
+                                <div class="keyboard-btn-div"> <button class="keyboard-btn keyboard-del-btn" id="r2-delete-btn" mode="r2"><i class="fa-solid  fa-delete-left ft-lg" id="delete-icon"></i></button> </div>
+                            </div>
+                            
+                        </div>
+    
+                        <div id="r2-done-div">
+                            <div class="r2-done-btn-div">
+                                <button class="r2-done-btn" value="0" onclick="backToR1()"><i class="fa-solid fa-backward-step ft-lg"></i></button>
+                            </div>
+                            <div class="r2-done-btn-div">
+                                <button class="r2-done-btn" onclick="r2Done()"><i class="fa-solid fa-forward-step ft-lg"></i></button>
+                            </div>
+                            <div id="r2-full-screen-div">
+                                <button id="r2-full-screen-btn" onclick="enterFullScreen('r2')"><i class="fa-solid fa-expand ft-lg"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                        
+                    
+                </div>
+            </dialog>
+            
+
+        <div id="body-div">
+            <div id="lastPage-div">
+                <form id="comment-form">
+                    <div id="comment-form-div">
+                        <label for="comment-textarea" id="comment-label">Comment</label>
+                        <textarea type="text" id="comment-textarea"></textarea>
+                    </div>
+                </form>
+                <div id="submit-btn-div">
+                    <button type="button" id="submit-btn" class="submit-btn" onclick="submit()"></button>
+                    <div id="submit-icon-div" class="submit-icon-div">
+                        <i id="submit-icon" class="fa-solid fa-paper-plane ft-lg"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./js/fontawesome/all.js" type="text/javascript"></script>
+    <script src="./js/index.js" type="text/javascript"></script>
+    <script src="./js/setSize.js" type="text/javascript"></script>
+</html>
